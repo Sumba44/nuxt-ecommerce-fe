@@ -40,16 +40,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   props: {
     items: {
       type: Array,
       default() {
-        return []
-      },
-    },
+        return [];
+      }
+    }
   },
 
   data() {
@@ -57,43 +57,43 @@ export default {
       search: '',
       searchBox: false,
       searchResults: [{ product_name: '', slug: '' }],
-      searchResultsCategories: [{ category: '', category_slug: '' }],
-    }
+      searchResultsCategories: [{ category: '', category_slug: '' }]
+    };
   },
 
   methods: {
     async searchFetch() {
-      console.log(this.search.length)
+      console.log(this.search.length);
       if (this.search.length > 1) {
         await axios
           .get(`http://localhost:5050/api/public/search?search=${this.search}`)
           .catch((err) => {
-            console.log(err)
+            console.log(err);
           })
           .then((res) => {
-            this.searchResults = res.data
-            console.log(this.searchResults)
-          })
+            this.searchResults = res.data;
+            console.log(this.searchResults);
+          });
 
         await axios
           .get(
             `http://localhost:5050/api/public/searchCategories?search=${this.search}`
           )
           .catch((err) => {
-            console.log(err)
+            console.log(err);
           })
           .then((res) => {
-            this.searchResultsCategories = res.data
-            console.log(this.searchResultsCategories)
-          })
+            this.searchResultsCategories = res.data;
+            console.log(this.searchResultsCategories);
+          });
       } else {
         this.searchResultsCategories = [
-          { product_name: '', slug: '', category: '', category_slug: '' },
-        ]
-        this.searchResultsCategories = [{ category: '', category_slug: '' }]
+          { product_name: '', slug: '', category: '', category_slug: '' }
+        ];
+        this.searchResultsCategories = [{ category: '', category_slug: '' }];
       }
-    },
-  },
+    }
+  }
 
   //   computed: {
   //     searchResultsF: function () {
@@ -102,7 +102,7 @@ export default {
   //       });
   //     },
   //   },
-}
+};
 </script>
 
 <style lang="scss">

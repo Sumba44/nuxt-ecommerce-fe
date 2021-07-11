@@ -92,13 +92,13 @@
 </template>
 
 <script>
-import axios from "axios"
-import MenuTop from "~/components/MenuTop.vue"
-import Header from "~/components/Header.vue"
-import Breadcrumbs from "~/components/Breadcrumbs.vue"
-import CategoryProduct from "~/components/CategoryProduct.vue"
+import axios from "axios";
+import MenuTop from "~/components/MenuTop.vue";
+import Header from "~/components/Header.vue";
+import Breadcrumbs from "~/components/Breadcrumbs.vue";
+import CategoryProduct from "~/components/CategoryProduct.vue";
 // import Pagination from "~/components/Pagination.vue";
-import Footer from "~/components/Footer.vue"
+import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
@@ -107,69 +107,69 @@ export default {
     Breadcrumbs,
     CategoryProduct,
     // Pagination,
-    Footer,
+    Footer
   },
 
   async asyncData({ params, error }) {
-    let productsFetchStatus = true
+    let productsFetchStatus = true;
     const productsFetch = await axios
       .get(
         `http://localhost:5050/api/public/getallproductsincategory/${params.category}?type=rating&sort=desc`
       )
       .catch((err) => {
-        productsFetchStatus = false
-      })
+        console.log(err);
+        productsFetchStatus = false;
+      });
 
-    let categoryFetchStatus = true
+    let categoryFetchStatus = true;
     const categoryFetch = await axios
       .get(
         `http://localhost:5050/api/public/getcategory?slug=${params.category}`
       )
       .catch((err) => {
-        categoryFetchStatus = false
+        console.log(err);
+        categoryFetchStatus = false;
         // error({ statusCode: 404, message: err.message });
-      })
+      });
 
     return {
       products:
         productsFetchStatus &&
-        productsFetch.data.data.length != 0 &&
-        productsFetch.data.data != undefined
+        productsFetch.data.data.length !== 0 &&
+        productsFetch.data.data !== undefined
           ? productsFetch.data.data
           : "This category has no products :(",
       results:
-        productsFetchStatus &&
-        productsFetch.data.data.length != 0 &&
-        productsFetch.data.data != undefined
-          ? true
-          : false,
+        !!(productsFetchStatus &&
+        productsFetch.data.data.length !== 0 &&
+        productsFetch.data.data !== undefined),
       category:
         categoryFetchStatus &&
-        categoryFetch.data.length != 0 &&
-        categoryFetch.data != undefined
+        categoryFetch.data.length !== 0 &&
+        categoryFetch.data !== undefined
           ? categoryFetch.data
           : [
               {
                 category_slug: params.category,
                 category: "Category does not exist",
-                info: "",
-              },
-            ],
-    }
+                info: ""
+              }
+            ]
+    };
   },
 
   data() {
     return {
       pagination: [
         { link: "/brands", text: "1" },
-        { link: "", text: "2" },
+        { link: "", text: "2" }
       ],
       results: false,
       activeBtn1: true,
       activeBtn2: false,
       activeBtn3: false,
-      activeBtn4: false,
-    }
+      activeBtn4: false
+    };
   },
 
   head() {
@@ -179,15 +179,15 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: "Product page meta description",
+          content: "Product page meta description"
         },
         {
           hid: "keywords",
           name: "keywords",
-          content: "product, page, meta, keywords",
-        },
-      ],
-    }
+          content: "product, page, meta, keywords"
+        }
+      ]
+    };
   },
 
   computed: {
@@ -195,29 +195,29 @@ export default {
       const links = [
         {
           link: "/" + this.category[0].category_slug,
-          text: this.category[0].category_name,
-        },
-      ]
+          text: this.category[0].category_name
+        }
+      ];
       // this.$route.params
-      return links
-    },
+      return links;
+    }
   },
 
   methods: {
     async sortProducts(sortBy, sortMethod) {
       // console.log(sortMethod);
-      this.$nuxt.$loading.start()
+      this.$nuxt.$loading.start();
       await axios
         .get(
           `http://localhost:5050/api/public/getallproductsincategory/${this.category[0].category_slug}?type=${sortBy}&sort=${sortMethod}`
         )
         .catch((error) => {
-          console.log(error)
+          console.log(error);
         })
         .then((res) => {
-          this.products = res.data.data
-          this.$nuxt.$loading.finish()
-        })
+          this.products = res.data.data;
+          this.$nuxt.$loading.finish();
+        });
     },
 
     // async fetchPagination(sortBy, sortMethod, size, page) {
@@ -236,13 +236,13 @@ export default {
     // },
 
     removeActive() {
-      this.activeBtn1 = false
-      this.activeBtn2 = false
-      this.activeBtn3 = false
-      this.activeBtn4 = false
-    },
-  },
-}
+      this.activeBtn1 = false;
+      this.activeBtn2 = false;
+      this.activeBtn3 = false;
+      this.activeBtn4 = false;
+    }
+  }
+};
 </script>
 
 <style lang="scss"></style>

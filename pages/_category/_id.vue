@@ -12,7 +12,7 @@
             md="6"
             class="product__image"
             :style="{
-              'background-image': 'url(' + product[0].product_image + ')',
+              'background-image': 'url(' + product[0].product_image + ')'
             }"
           >
             <div class="product__sticker__wrap">
@@ -45,7 +45,7 @@
                         product[0].price * ((100 - product[0].sale) / 100)
                       )
                         .toFixed(2)
-                        .replace('.', ',')
+                        .replace(".", ",")
                     }}
                     €</span
                   >
@@ -55,7 +55,7 @@
                   class="product__price--before ml-5"
                 >
                   ({{
-                    parseFloat(product[0].price).toFixed(2).replace('.', ',')
+                    parseFloat(product[0].price).toFixed(2).replace(".", ",")
                   }}) €
                 </div>
               </div>
@@ -217,14 +217,14 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 // import NumberInputSpinner from "vue-number-input-spinner"
-import MenuTop from '~/components/MenuTop.vue'
-import Header from '~/components/Header.vue'
-import Breadcrumbs from '~/components/Breadcrumbs.vue'
-import StarRating from '~/components/StarRating.vue'
-import Supplier from '~/components/Supplier.vue'
-import Footer from '~/components/Footer.vue'
+import MenuTop from "~/components/MenuTop.vue";
+import Header from "~/components/Header.vue";
+import Breadcrumbs from "~/components/Breadcrumbs.vue";
+import StarRating from "~/components/StarRating.vue";
+import Supplier from "~/components/Supplier.vue";
+import Footer from "~/components/Footer.vue";
 
 // import moment from "moment";
 
@@ -236,35 +236,34 @@ export default {
     Breadcrumbs,
     StarRating,
     Supplier,
-    Footer,
+    Footer
   },
   scrollToTop: true,
 
   async asyncData({ params, error }) {
     const productFetch = await axios
       .get(`http://localhost:5050/api/public/getproduct/${params.id}`)
-      .catch((err) => {
-        console.log(err)
+      .catch(err => {
+        console.log(err);
         return {
-          results: false,
-        }
-      })
+          results: false
+        };
+      });
     return {
       product:
         Object.keys(productFetch.data).length > 0 &&
         productFetch.data !== undefined
           ? productFetch.data
           : {
-              product_name: 'This product doesnt exist',
-              category_slug: '',
-              category: '',
+              product_name: "This product doesnt exist",
+              category_slug: "",
+              category: ""
             },
-      results:
+      results: !!(
         Object.keys(productFetch.data).length > 0 &&
         productFetch.data !== undefined
-          ? true
-          : false,
-    }
+      )
+    };
   },
 
   data: () => {
@@ -272,26 +271,26 @@ export default {
       game: null,
       price: Math.floor(Math.random() * 50 + 9),
       quantity: 1,
-      results: false,
-    }
+      results: false
+    };
   },
 
   head() {
     return {
-      title: this.product[0].product_name + ' || vue-ecommerce.com',
+      title: this.product[0].product_name + " || vue-ecommerce.com",
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'Product page meta description',
+          hid: "description",
+          name: "description",
+          content: "Product page meta description"
         },
         {
-          hid: 'keywords',
-          name: 'keywords',
-          content: 'product, page, meta, keywords',
-        },
-      ],
-    }
+          hid: "keywords",
+          name: "keywords",
+          content: "product, page, meta, keywords"
+        }
+      ]
+    };
   },
 
   // created() {
@@ -302,18 +301,18 @@ export default {
     breadcrumbs() {
       const links = [
         {
-          link: '/' + this.$route.params.category,
-          text: this.$route.params.category,
-        },
-      ]
-      links.push({ link: '', text: this.product[0].product_name })
-      return links
-    },
+          link: "/" + this.$route.params.category,
+          text: this.$route.params.category
+        }
+      ];
+      links.push({ link: "", text: this.product[0].product_name });
+      return links;
+    }
   },
 
   methods: {
     addToCart() {
-      this.$store.commit('SET_CART', {
+      this.$store.commit("SET_CART", {
         date: Date.now(),
         cover: this.product.background_image,
         name: this.product.name,
@@ -321,11 +320,11 @@ export default {
         price: this.price,
         quantity: this.quantity,
         category: this.product.genres[0].name,
-        slug: this.product.slug,
-      })
-    },
-  },
-}
+        slug: this.product.slug
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss">

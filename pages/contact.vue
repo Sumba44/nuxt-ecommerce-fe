@@ -145,21 +145,21 @@
 <script>
 // import { mapState } from 'vuex'
 // import axios from "axios";
-import Header from "~/components/Header.vue"
-import MenuTop from "~/components/MenuTop.vue"
-import Breadcrumbs from "~/components/Breadcrumbs.vue"
-import Footer from "~/components/Footer.vue"
+import Header from "~/components/Header.vue";
+import MenuTop from "~/components/MenuTop.vue";
+import Breadcrumbs from "~/components/Breadcrumbs.vue";
+import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
     MenuTop,
     Header,
     Breadcrumbs,
-    Footer,
+    Footer
   },
 
   data() {
-    return {}
+    return {};
   },
 
   computed: {
@@ -167,11 +167,11 @@ export default {
       const links = [
         {
           link: "/cart/",
-          text: "Shopping Cart",
-        },
-      ]
-      return links
-    },
+          text: "Shopping Cart"
+        }
+      ];
+      return links;
+    }
   },
 
   // watches for this.orders changes
@@ -180,8 +180,8 @@ export default {
   // calculates totals on page load
   mounted: {},
 
-  methods: {},
-}
+  methods: {}
+};
 </script>
 
 <style lang="scss">

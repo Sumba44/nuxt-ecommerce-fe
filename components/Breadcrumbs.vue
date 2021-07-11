@@ -32,14 +32,14 @@ export default {
     items: {
       type: Array,
       default() {
-        return []
-      },
-    },
+        return [];
+      }
+    }
   },
   data() {
-    return {}
-  },
-}
+    return {};
+  }
+};
 </script>
 
 <style lang="scss">

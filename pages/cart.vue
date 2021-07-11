@@ -122,26 +122,26 @@
 
 <script>
 // import { mapState } from 'vuex'
-import axios from 'axios'
-import Header from '~/components/Header.vue'
-import MenuTop from '~/components/MenuTop.vue'
-import Breadcrumbs from '~/components/Breadcrumbs.vue'
-import Footer from '~/components/Footer.vue'
+import axios from 'axios';
+import Header from '~/components/Header.vue';
+import MenuTop from '~/components/MenuTop.vue';
+import Breadcrumbs from '~/components/Breadcrumbs.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
   components: {
     MenuTop,
     Header,
     Breadcrumbs,
-    Footer,
+    Footer
   },
 
   data() {
     return {
       orders: this.$store.state.orders,
       totalOrder: 0,
-      totalPrice: 0.0,
-    }
+      totalPrice: 0.0
+    };
   },
 
   computed: {
@@ -149,48 +149,48 @@ export default {
       const links = [
         {
           link: '/cart/',
-          text: 'Shopping Cart',
-        },
-      ]
-      return links
-    },
+          text: 'Shopping Cart'
+        }
+      ];
+      return links;
+    }
   },
 
   // watches for this.orders changes
   watch: {
     orders() {
-      this.recalculateTotals()
-    },
+      this.recalculateTotals();
+    }
   },
 
   // calculates totals on page load
   mounted: {
     reCalTotals() {
-      this.recalculateTotals()
-    },
+      this.recalculateTotals();
+    }
   },
 
   methods: {
     // delete order from cart
     deleteOrder(index) {
-      this.$store.commit('DELETE_ORDER', index)
+      this.$store.commit('DELETE_ORDER', index);
     },
 
     // calculate totals
     recalculateTotals() {
-      let sum = 0
+      let sum = 0;
       for (let i = 0; i < this.$store.state.orders.length; i++) {
         sum +=
           parseFloat(this.$store.state.orders[i].price) *
-          this.$store.state.orders[i].quantity
+          this.$store.state.orders[i].quantity;
       }
-      this.totalPrice = sum
+      this.totalPrice = sum;
     },
 
     formatDate(date) {
-      const hours = date.getHours()
-      const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
-      const strTime = hours + ':' + minutes
+      const hours = date.getHours();
+      const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+      const strTime = hours + ':' + minutes;
       return (
         date.getDate() +
         '/' +
@@ -199,7 +199,7 @@ export default {
         date.getFullYear() +
         ' ' +
         strTime
-      )
+      );
 
       // var d = new Date();
       // var e = formatDate(d);
@@ -207,7 +207,7 @@ export default {
 
     // Send order to backend
     async sendOrder() {
-      const date = this.formatDate(new Date())
+      const date = this.formatDate(new Date());
 
       await axios
         .post(
@@ -219,19 +219,19 @@ export default {
           },
           {
             headers: {
-              'Content-type': 'application/json',
-            },
+              'Content-type': 'application/json'
+            }
           }
         )
         .catch((e) => {
-          console.log(e)
+          console.log(e);
         })
         .then((response) => {
-          console.log('Order was sent successfully!')
-        })
-    },
-  },
-}
+          console.log('Order was sent successfully!');
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss">

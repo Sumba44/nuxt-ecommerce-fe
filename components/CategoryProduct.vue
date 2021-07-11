@@ -45,20 +45,25 @@
 </template>
 
 <script>
-import StarRating from "~/components/StarRating.vue"
+import StarRating from "~/components/StarRating.vue";
 
 export default {
   components: {
-    StarRating,
+    StarRating
   },
 
   props: {
-    product: {},
+    product: {
+      type: Object,
+      default() {
+        return { message: {} };
+      }
+    }
   },
   data() {
-    return {}
-  },
-}
+    return {};
+  }
+};
 </script>
 
 <style lang="scss">

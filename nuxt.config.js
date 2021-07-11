@@ -57,6 +57,10 @@ export default {
     '@nuxtjs/fontawesome',
   ],
 
+  eslint: {
+    fix: true
+  },
+
   fontawesome: {
     icons: {
       solid: [
@@ -129,5 +133,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+   
+  },
 }
+
+

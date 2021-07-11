@@ -98,13 +98,13 @@
 </template>
 
 <script>
-import axios from "axios"
-import MenuTop from "~/components/MenuTop.vue"
-import Header from "~/components/Header.vue"
-import HomeCategories from "~/components/HomeCategories.vue"
-import CategoryProduct from "~/components/CategoryProduct.vue"
-import Pagination from "~/components/Pagination.vue"
-import Footer from "~/components/Footer.vue"
+import axios from 'axios';
+import MenuTop from '~/components/MenuTop.vue';
+import Header from '~/components/Header.vue';
+import HomeCategories from '~/components/HomeCategories.vue';
+import CategoryProduct from '~/components/CategoryProduct.vue';
+import Pagination from '~/components/Pagination.vue';
+import Footer from '~/components/Footer.vue';
 
 export default {
   components: {
@@ -113,7 +113,7 @@ export default {
     HomeCategories,
     CategoryProduct,
     Pagination,
-    Footer,
+    Footer
   },
 
   async asyncData({ params, error }) {
@@ -133,76 +133,76 @@ export default {
         `http://localhost:5050/api/public/getallproductsincategory/1?type=rating&sort=desc`
       )
       .catch((err) => {
-        error({ statusCode: 404, message: err.message })
-      })
+        error({ statusCode: 404, message: err.message });
+      });
 
     const categories = await axios
       .get(`http://localhost:5050/api/public/getallcategories`)
       .catch((err) => {
-        error({ statusCode: 404, message: err.message })
-      })
+        error({ statusCode: 404, message: err.message });
+      });
 
-    return { products: products.data.data, categories: categories.data.data }
+    return { products: products.data.data, categories: categories.data.data };
   },
 
   data() {
-    var rand = Math.floor(Math.random() * 5 + 3)
+    const rand = Math.floor(Math.random() * 5 + 3);
 
     return {
       products: null,
       pagination: [
-        { link: "/brands", text: "1" },
-        { link: "", text: "2" },
+        { link: '/brands', text: '1' },
+        { link: '', text: '2' }
       ],
       rating: rand,
       value1: [0, 60],
-      ex1: { label: "color", val: 25, color: "gray" },
+      ex1: { label: 'color', val: 25, color: 'gray' },
       switch1: false,
       switch2: false,
       switch3: false,
       min: 0,
       max: 500,
       slider: 40,
-      range: [0, 500],
-    }
+      range: [0, 500]
+    };
   },
 
   head() {
     return {
-      title: "Nuxt Ecommerce || vue-ecommerce.com",
+      title: 'Nuxt Ecommerce || vue-ecommerce.com',
       meta: [
         {
-          hid: "description",
-          name: "description",
-          content: "Product page meta description",
+          hid: 'description',
+          name: 'description',
+          content: 'Product page meta description'
         },
         {
-          hid: "keywords",
-          name: "keywords",
-          content: "product, page, meta, keywords",
-        },
-      ],
-    }
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'product, page, meta, keywords'
+        }
+      ]
+    };
   },
 
   watch: {
     model(val) {
       if (val.length > 5) {
-        this.$nextTick(() => this.model.pop())
+        this.$nextTick(() => this.model.pop());
       }
-    },
+    }
   },
 
   methods: {
     getColor(v) {
-      if (v == "Red") {
-        return "red"
-      } else if (v == "Green") {
-        return "green"
-      } else if (v == "Blue") {
-        return "blue"
+      if (v === 'Red') {
+        return 'red';
+      } else if (v === 'Green') {
+        return 'green';
+      } else if (v === 'Blue') {
+        return 'blue';
       } else {
-        return "black"
+        return 'black';
       }
     },
 
@@ -210,15 +210,15 @@ export default {
       await axios
         .get(`https://api.rawg.io/api/products?page=${site}`)
         .then((res) => {
-          this.products = res.data.results
-          console.log(res.data.results)
+          this.products = res.data.results;
+          console.log(res.data.results);
         })
         .catch((err) => {
-          error({ statusCode: 404, message: err.message })
-        })
-    },
-  },
-}
+          console.log(err);
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss"></style>

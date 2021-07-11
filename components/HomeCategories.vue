@@ -78,10 +78,10 @@ export default {
   data() {
     return {
       games: null,
-      genre: 1,
-    }
-  },
-}
+      genre: 1
+    };
+  }
+};
 </script>
 
 <style lang="scss">

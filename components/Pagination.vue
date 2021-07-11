@@ -21,36 +21,38 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: {
     items: {
       type: Array,
       default() {
-        return []
-      },
-    },
+        return [];
+      }
+    }
   },
   data() {
     return {
-      products: [],
-    }
+      products: []
+    };
   },
 
   methods: {
     async fetchPagination(sortBy, sortMethod, size, page) {
-      this.$nuxt.$loading.start()
+      this.$nuxt.$loading.start();
       await axios
         .get(
           `http://localhost:5050/api/public/getallproductsincategory/${this.category[0].category_slug}?size=${size}&page=${page}&type=${sortBy}&sort=${sortMethod}`
         )
         .catch((error) => {
-          console.log(error)
+          console.log(error);
         })
         .then((res) => {
-          this.products = res.data.data
-          this.$nuxt.$loading.finish()
-        })
-    },
-  },
-}
+          this.products = res.data.data;
+          this.$nuxt.$loading.finish();
+        });
+    }
+  }
+};
 </script>

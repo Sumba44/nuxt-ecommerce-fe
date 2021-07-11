@@ -24,13 +24,19 @@
 <script>
 export default {
   props: {
-    rating: Number,
-    size: Number,
+    rating: {
+      type: Number,
+      default: 0
+    },
+    size: {
+      type: Number,
+      default: 0
+    }
   },
   data() {
-    return {}
-  },
-}
+    return {};
+  }
+};
 </script>
 
 <style lang="scss">

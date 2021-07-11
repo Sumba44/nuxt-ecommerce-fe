@@ -99,20 +99,20 @@
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue"
-import Search from "~/components/Search"
+import Logo from "~/components/Logo.vue";
+import Search from "~/components/Search";
 export default {
   components: {
     Logo,
-    Search,
+    Search
   },
 
   data() {
     return {
       cartOrders: this.$store.state.orders,
-      drawer: false,
-    }
-  },
+      drawer: false
+    };
+  }
 
   // methods: {
 
@@ -126,7 +126,7 @@ export default {
   //     this.cart = this.cartOrders.length()
   //   },
   // },
-}
+};
 </script>
 
 <style lang="scss">

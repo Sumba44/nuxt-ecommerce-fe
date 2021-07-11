@@ -11,14 +11,23 @@
 <script>
 export default {
   props: {
-    supplierName: String,
-    supplierDesc: String,
-    supplierLogo: String,
+    supplierName: {
+      type: String,
+      default: ''
+    },
+    supplierDesc: {
+      type: String,
+      default: ''
+    },
+    supplierLogo: {
+      type: String,
+      default: ''
+    }
   },
   data() {
-    return {}
-  },
-}
+    return {};
+  }
+};
 </script>
 
 <style lang="scss">
