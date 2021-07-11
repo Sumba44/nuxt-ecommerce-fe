@@ -57,9 +57,9 @@ export default {
     '@nuxtjs/fontawesome',
   ],
 
-  eslint: {
-    fix: true
-  },
+  // eslint: {
+  //   fix: true
+  // },
 
   fontawesome: {
     icons: {
