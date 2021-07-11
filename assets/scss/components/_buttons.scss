@@ -1,0 +1,34 @@
+.btn-mid {
+  padding: 8px 30px;
+  border-radius: 21px;
+}
+
+.btn-orange {
+  font-weight: 500;
+  font-size: 15px;
+  background-color: #ff360e;
+  border-color: #ff360e;
+  padding: 10px 30px;
+  box-shadow: 0px 6px 16px #0000008c;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff !important;
+
+  &:hover {
+    background-color: darken($theme, 10%);
+    color: #fff;
+  }
+}
+
+.btn-success {
+  font-weight: 300;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
+  cursor: pointer;
+  color: #fff !important;
+}

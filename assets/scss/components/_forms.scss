@@ -1,0 +1,34 @@
+.v-input__slot > label {
+    margin-bottom: 0;
+    margin-left: 10px;;
+}
+
+.v-text-field .v-label--active {
+    top: 2px;
+}
+
+.v-input--selection-controls {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.v-input__slot {
+    margin-bottom: 0;
+}
+
+.v-input__slider v-input--range-slider {
+    margin-bottom: 35px;
+}
+
+.v-input__append-outer, .v-input__prepend-outer {
+    position: absolute;
+    margin-top: 52px;
+
+    .v-text-field > .v-input__control > .v-input__slot:before {
+        border: none;
+    }
+}
+
+.v-input__append-outer {
+    right: 0;
+}
