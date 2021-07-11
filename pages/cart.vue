@@ -122,11 +122,11 @@
 
 <script>
 // import { mapState } from 'vuex'
-import axios from 'axios';
-import Header from '~/components/Header.vue';
-import MenuTop from '~/components/MenuTop.vue';
-import Breadcrumbs from '~/components/Breadcrumbs.vue';
-import Footer from '~/components/Footer.vue';
+import axios from "axios";
+import Header from "~/components/Header.vue";
+import MenuTop from "~/components/MenuTop.vue";
+import Breadcrumbs from "~/components/Breadcrumbs.vue";
+import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
@@ -148,15 +148,14 @@ export default {
     breadcrumbs() {
       const links = [
         {
-          link: '/cart/',
-          text: 'Shopping Cart'
+          link: "/cart/",
+          text: "Shopping Cart"
         }
       ];
       return links;
     }
   },
 
-  // watches for this.orders changes
   watch: {
     orders() {
       this.recalculateTotals();
@@ -173,7 +172,7 @@ export default {
   methods: {
     // delete order from cart
     deleteOrder(index) {
-      this.$store.commit('DELETE_ORDER', index);
+      this.$store.commit("DELETE_ORDER", index);
     },
 
     // calculate totals
@@ -189,15 +188,15 @@ export default {
 
     formatDate(date) {
       const hours = date.getHours();
-      const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-      const strTime = hours + ':' + minutes;
+      const minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+      const strTime = hours + ":" + minutes;
       return (
         date.getDate() +
-        '/' +
+        "/" +
         (date.getMonth() + 1) +
-        '/' +
+        "/" +
         date.getFullYear() +
-        ' ' +
+        " " +
         strTime
       );
 
@@ -211,7 +210,7 @@ export default {
 
       await axios
         .post(
-          'http://localhost:5050/api/public/addorder',
+          "http://localhost:5050/api/public/addorder",
           {
             id: null,
             cart: this.$store.state.orders,
@@ -219,15 +218,15 @@ export default {
           },
           {
             headers: {
-              'Content-type': 'application/json'
+              "Content-type": "application/json"
             }
           }
         )
-        .catch((e) => {
+        .catch(e => {
           console.log(e);
         })
-        .then((response) => {
-          console.log('Order was sent successfully!');
+        .then(response => {
+          console.log(response, "Order was sent successfully!");
         });
     }
   }

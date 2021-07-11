@@ -172,15 +172,7 @@ export default {
       ];
       return links;
     }
-  },
-
-  // watches for this.orders changes
-  watch: {},
-
-  // calculates totals on page load
-  mounted: {},
-
-  methods: {}
+  }
 };
 </script>
 

@@ -14,13 +14,6 @@ module.exports = {
   rules: {
     semi: [2, 'always'],
     'comma-dangle': ['error', 'never'],
-    'no-console': 'off',
-    'vue/require-default-prop': [
-      'error',
-      {
-        "required": false,
-        'non-required': false,
-      },
-    ],
+    'no-console': 'off'
   },
 }
