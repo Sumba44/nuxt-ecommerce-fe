@@ -71,13 +71,13 @@ ul.breadcrumb li + li:before {
 }
 
 ul.breadcrumb li a {
-  color: $blue;
+  color: $primaryblue;
   text-decoration: none;
   font-weight: 500;
 }
 
 ul.breadcrumb li a:hover {
-  color: $blue;
+  color: $primaryblue;
   text-decoration: underline;
 }
 

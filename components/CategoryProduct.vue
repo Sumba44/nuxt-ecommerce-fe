@@ -132,7 +132,7 @@ export default {
   }
 
   &.product__sticker--primary {
-    background: $blue;
+    background: $primaryblue;
   }
 }
 
@@ -159,7 +159,7 @@ export default {
   text-decoration: none;
 
   &:hover {
-    color: $blue;
+    color: $primaryblue;
     text-shadow: none;
   }
 }

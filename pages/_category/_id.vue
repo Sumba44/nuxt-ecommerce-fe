@@ -371,7 +371,7 @@ export default {
   }
 
   &.product__sticker--primary {
-    background: $blue;
+    background: $primaryblue;
   }
 }
 
@@ -458,7 +458,7 @@ export default {
 
 .media-body {
   h5 {
-    color: $blue;
+    color: $primaryblue;
     margin-bottom: 0;
   }
   p {
@@ -473,7 +473,7 @@ export default {
 
   .media__icon {
     font-size: 45px;
-    color: $blue;
+    color: $primaryblue;
   }
 }
 
