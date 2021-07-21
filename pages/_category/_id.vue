@@ -191,6 +191,7 @@
         <div class="row">
           <div class="col">
             <h2>Product Information</h2>
+            <!-- eslint-disable-next-line -->
             <div v-html="product[0].long_desc"></div>
           </div>
         </div>
@@ -217,31 +218,14 @@
 </template>
 
 <script>
-import axios from "axios";
-// import NumberInputSpinner from "vue-number-input-spinner"
-import MenuTop from "~/components/MenuTop.vue";
-import Header from "~/components/Header.vue";
-import Breadcrumbs from "~/components/Breadcrumbs.vue";
-import StarRating from "~/components/StarRating.vue";
-import Supplier from "~/components/Supplier.vue";
-import Footer from "~/components/Footer.vue";
-
-// import moment from "moment";
+// import axios from "axios";
 
 export default {
-  components: {
-    // NumberInputSpinner,
-    MenuTop,
-    Header,
-    Breadcrumbs,
-    StarRating,
-    Supplier,
-    Footer
-  },
+
   scrollToTop: true,
 
-  async asyncData({ params, error }) {
-    const productFetch = await axios
+  async asyncData({ $axios, params, error }) {
+    const productFetch = await $axios
       .get(`http://localhost:5050/api/public/getproduct/${params.id}`)
       .catch(err => {
         console.log(err);

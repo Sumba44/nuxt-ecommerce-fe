@@ -80,11 +80,11 @@
           <div class="row">
             <nuxt-link
               v-for="product in products"
-              :key="product.product_id"
-              :to="categories[0].category_slug + '/' + product.slug"
+              :key="product.Product[0].product_id"
+              :to="product.category_slug + '/' + product.Product[0].slug"
               class="col-md-3 category__product-wrap"
             >
-              <CategoryProduct :product="product" />
+              <CategoryProduct :product="product.Product[0]" />
             </nuxt-link>
           </div>
         </div>
@@ -117,15 +117,6 @@ export default {
   },
 
   async asyncData({ params, error }) {
-    // return await axios
-    //   .get(`http://localhost:5050/api/public/getallproductsincategory/top-products`)
-    //   .then((res) => {
-    //     // console.log(res.data);
-    //     return { products: res.data };
-    //   })
-    //   .catch((err) => {
-    //     error({ statusCode: 404, message: err.message });
-    //   });
 
     // We can use async/await ES6 feature
     const products = await axios
@@ -141,6 +132,8 @@ export default {
       .catch((err) => {
         error({ statusCode: 404, message: err.message });
       });
+
+      // console.log(products.data.data[0].Product[0].product_name);
 
     return { products: products.data.data, categories: categories.data.data };
   },

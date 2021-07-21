@@ -9,7 +9,7 @@
         <div class="col-md-12">
           <h6>Games</h6>
           <h2 class="mb-5">{{ category[0].category_name }}</h2>
-          <p v-html="category[0].category_info"></p>
+          <p>{{ category[0].category_info }}</p>
           <div v-if="results" id="category-filter" class="my-8">
             <v-btn
               color="primary"
@@ -55,11 +55,11 @@
           <div v-if="results" class="row">
             <nuxt-link
               v-for="product in products"
-              :key="product.product_id"
-              :to="category[0].category_slug + '/' + product.slug"
+              :key="product.Product[0].product_id"
+              :to="product.category_slug + '/' + product.Product[0].slug"
               class="col-md-3 category__product-wrap"
             >
-              <CategoryProduct :product="product" />
+              <CategoryProduct :product="product.Product[0]" />
             </nuxt-link>
           </div>
           <div

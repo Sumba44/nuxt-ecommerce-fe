@@ -4,7 +4,7 @@
     <div v-if="supplierLogo" class="supplier__logo">
       <img :src="supplierLogo" />
     </div>
-    <div v-html="supplierDesc"></div>
+    <p>{{ supplierDesc }}</p>
   </div>
 </template>
 
